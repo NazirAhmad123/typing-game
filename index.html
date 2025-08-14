@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tashaq Kashal Typing Test</title>
+  <script src="https://unpkg.com/tone@14.7.58/build/Tone.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="confetti-container" id="confetti-container"></div>
+  <div class="firework-container" id="firework-container"></div>
+  <div class="container">
+    <div class="header">
+      <h1>Tashaq Kashal Typing Test</h1>
+      <div class="button-group">
+        <button id="generate-btn">Generate New Passage ✨</button>
+        <button id="default-passage-btn">Use Default Passage</button>
+        <button id="reset-btn">Reset Test</button>
+        <button id="ask-ai-btn">Ask AI for Help</button>
+      </div>
+      <p class="instruction" id="instruction">Start typing to begin the test...</p>
+      <p class="instruction extra-text">Today is a great day to practice typing</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-box">
+        <div class="metric-label">WPM</div>
+        <div class="metric-value" id="wpm">0</div>
+      </div>
+      <div class="metric-box" id="timer-box">
+        <div class="metric-label">Time</div>
+        <div class="metric-value" id="timer">60s</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Accuracy</div>
+        <div class="metric-value" id="accuracy">0%</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Errors</div>
+        <div class="metric-value" id="errors">0</div>
+      </div>
+    </div>
+
+    <div class="settings-grid">
+      <div class="setting-group">
+        <label for="time-select">Time:</label>
+        <select id="time-select">
+          <option value="60">60s</option>
+          <option value="30">30s</option>
+        </select>
+      </div>
+      <div class="setting-toggle">
+        <span>Hide Timer</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-timer-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-toggle">
+        <span>Blur Text</span>
+        <label class="switch">
+          <input type="checkbox" id="blur-text-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="typing-area">
+      <div id="text-display"></div>
+      <div class="cursor" id="cursor"></div>
+      <input type="text" id="text-input" autofocus autocomplete="off" autocapitalize="off" spellcheck="false">
+    </div>
+  </div>
+
+  <!-- Post-Test Summary Modal -->
+  <div class="modal-overlay" id="summary-modal">
+    <div class="modal-content">
+      <h2 id="modal-title">Test Complete!</h2>
+      <div class="modal-metrics">
+        <div class="modal-metric-box">
+          <div class="modal-metric-label">WPM</div>
+          <div class="modal-metric-value" id="modal-wpm">0</div>
+        </div>
+        <div class="modal-metric-box">
+          <div class="modal-metric-label">Accuracy</div>
+          <div class="modal-metric-value" id="modal-accuracy">0%</div>
+        </div>
+        <div class="modal-metric-box">
+          <div class="modal-metric-label">Errors</div>
+          <div class="modal-metric-value" id="modal-errors">0</div>
+        </div>
+      </div>
+      <div class="quote" id="motivational-quote"></div>
+      <button id="restart-btn">Restart Test</button>
+    </div>
+  </div>
+
+  <!-- AI Help Modal -->
+  <div class="modal-overlay" id="help-modal">
+    <div class="modal-content">
+      <h2>Ask for Help</h2>
+      <p id="ai-help-prompt">I can help with tips on typing, grammar, or general writing.</p>
+      <textarea id="ai-question" placeholder="Ask me anything..."></textarea>
+      <div class="chat-buttons">
+        <button id="close-help-btn">Close</button>
+        <button id="submit-question-btn">Submit</button>
+      </div>
+      <div id="ai-response"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>
